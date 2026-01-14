@@ -1,0 +1,29 @@
+[
+  {
+    "id": "event_01",
+    "timestamp": "14:00:01",
+    "layer": "Physical/L1",
+    "tech_log": "Voltage drop detected: Perimeter_Sensor_04",
+    "isomorphic_mapping": "Boundary Breach: Semantic Perimeter Compromise",
+    "zone": "Perimeter",
+    "severity": "low"
+  },
+  {
+    "id": "event_02",
+    "timestamp": "14:02:45",
+    "layer": "Network/L3",
+    "tech_log": "ICMP Tunneling detected: 10.0.4.12 -> EXT_IP",
+    "isomorphic_mapping": "Lateral Movement: Hallway Navigation",
+    "zone": "Hallway",
+    "severity": "medium"
+  },
+  {
+    "id": "event_03",
+    "timestamp": "14:05:12",
+    "layer": "App/L7",
+    "tech_log": "Buffer Overflow: Vault_Access_Control (PID 401)",
+    "isomorphic_mapping": "Target Acquisition: Vault Integrity Failure",
+    "zone": "Vault",
+    "severity": "critical"
+  }
+]
