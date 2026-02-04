@@ -1,29 +1,47 @@
 [
   {
-    "id": "event_01",
-    "timestamp": "14:00:01",
-    "layer": "Physical/L1",
-    "tech_log": "Voltage drop detected: Perimeter_Sensor_04",
+    "id": "e_01",
+    "timestamp": "14:00:01.234",
+    "layer": "Kernel/L0",
+    "syscall": "sys_openat",
+    "pid": 4192,
+    "process_name": "nginx_worker",
+    "neo4j_node_id": "n:Process:4192",
+    "neo4j_relationship": "(:Process)-[:ACCESSES]->(:File)",
+    "tech_log": "fd=4 filename=/etc/shadow flags=O_RDONLY",
     "isomorphic_mapping": "Boundary Breach: Semantic Perimeter Compromise",
     "zone": "Perimeter",
-    "severity": "low"
+    "noise_reduction_score": "92.4%",
+    "severity": "critical"
   },
   {
-    "id": "event_02",
-    "timestamp": "14:02:45",
+    "id": "e_02",
+    "timestamp": "14:00:05.882",
     "layer": "Network/L3",
-    "tech_log": "ICMP Tunneling detected: 10.0.4.12 -> EXT_IP",
+    "syscall": "sys_connect",
+    "pid": 4192,
+    "process_name": "nginx_worker",
+    "neo4j_node_id": "n:Socket:TCP",
+    "neo4j_relationship": "(:Process)-[:CONNECTS_TO]->(:IP_Address)",
+    "tech_log": "dest_ip=192.168.1.50 port=4444",
     "isomorphic_mapping": "Lateral Movement: Hallway Navigation",
     "zone": "Hallway",
-    "severity": "medium"
+    "noise_reduction_score": "88.1%",
+    "severity": "critical"
   },
   {
-    "id": "event_03",
-    "timestamp": "14:05:12",
-    "layer": "App/L7",
-    "tech_log": "Buffer Overflow: Vault_Access_Control (PID 401)",
-    "isomorphic_mapping": "Target Acquisition: Vault Integrity Failure",
+    "id": "e_03",
+    "timestamp": "14:00:12.110",
+    "layer": "Application/L7",
+    "syscall": "sys_execve",
+    "pid": 4193,
+    "process_name": "bash",
+    "neo4j_node_id": "n:Supernode:666",
+    "neo4j_relationship": "(:Process)-[:BULK_MODIFIES]->(:Fileset)",
+    "tech_log": "BULK_ACCESS (15,000 files in /data/vault)",
+    "isomorphic_mapping": "Impact: Mass Vault Encryption (Ransomware)",
     "zone": "Vault",
+    "noise_reduction_score": "99.8%",
     "severity": "critical"
   }
 ]
