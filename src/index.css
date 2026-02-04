@@ -1,15 +1,169 @@
-:root { --bg: #0d1117; --panel: #161b22; --accent: #58a6ff; --crit: #f85149; }
-body { margin: 0; background: var(--bg); color: #c9d1d9; font-family: 'Courier New', monospace; }
-.app-container { display: flex; flex-direction: column; height: 100vh; padding: 20px; box-sizing: border-box; }
-header { display: flex; justify-content: space-between; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-main { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; flex: 1; padding: 20px 0; }
-.view-pane { background: var(--panel); border-radius: 6px; padding: 20px; border: 1px solid #30363d; }
-.map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; height: 300px; }
-.zone { border: 1px solid #30363d; display: flex; align-items: center; justify-content: center; position: relative; }
-.zone.active { border-color: var(--crit); background: rgba(248, 81, 73, 0.1); }
-.pulse { position: absolute; width: 100%; height: 100%; border: 2px solid var(--crit); animation: p 1.5s infinite; }
-@keyframes p { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.1); opacity: 0; } }
-.log-card { margin-bottom: 10px; padding: 10px; border-left: 4px solid var(--accent); background: #000; font-size: 0.8rem; }
-.log-card.critical { border-left-color: var(--crit); }
-.trigger-btn { background: var(--accent); color: white; border: none; padding: 15px; cursor: pointer; font-weight: bold; }
-button.active { background: white; color: black; }
+/* ISOCORE Industrial Theme */
+:root {
+  --bg-dark: #0d1117;
+  --panel-bg: #161b22;
+  --border: #30363d;
+  --accent: #58a6ff;
+  --critical: #f85149;
+  --success: #238636;
+  --text: #c9d1d9;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Courier New', monospace;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  padding: 1rem 2rem;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.version { font-size: 0.8rem; color: var(--accent); vertical-align: super; }
+.subtitle { font-size: 0.85rem; color: #8b949e; margin: 0; }
+
+/* Toggles */
+.toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.toggle-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Main Body */
+.dashboard-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.view-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Narrative View Map */
+.facility-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  height: 400px;
+}
+
+.zone-box {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 4px;
+}
+
+.zone-box.active-alarm {
+  border-color: var(--critical);
+  background: rgba(248, 81, 73, 0.05);
+}
+
+.pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--critical);
+  border-radius: 4px;
+  animation: alarm-pulse 1.5s infinite;
+}
+
+@keyframes alarm-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.05); opacity: 0; }
+}
+
+/* Forensic Graph Visualization */
+.graph-visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.node {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.source-node { background: #1f6feb; box-shadow: 0 0 20px rgba(31, 111, 235, 0.4); }
+.target-node { background: #238636; box-shadow: 0 0 20px rgba(35, 134, 54, 0.4); }
+
+.edge-connector {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow-line { height: 2px; background: var(--text); width: 100%; }
+
+/* Metrics Dashboard */
+.metrics-dashboard {
+  background: var(--panel-bg);
+  border-top: 1px solid var(--border);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.live-metrics { display: flex; gap: 30px; }
+.metric { display: flex; flex-direction: column; }
+.m-label { font-size: 0.7rem; color: #8b949e; }
+.m-value { font-size: 1.2rem; color: var(--accent); font-weight: bold; }
+
+.trigger-btn {
+  background: var(--success);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.telemetry-dump {
+  background: #000;
+  padding: 15px;
+  color: #7ee787;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
