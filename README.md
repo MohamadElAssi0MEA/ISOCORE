@@ -8,6 +8,9 @@
 
 This artifact provides the implementation of the ISOCORE **Polymorphic Engine**, demonstrating how whole-system provenance traces (collected via eBPF) are algorithmically distilled to reduce analyst cognitive load without losing forensic fidelity.
 
+**Live Deployment:** [https://isocore.vercel.app/](https://isocore.vercel.app/)  
+*(Note: The live demo utilizes pre-computed traces; for dynamic performance benchmarking, please see the **Quick Start** section below.)*
+
 ---
 
 ## 2. Key Research Contributions
